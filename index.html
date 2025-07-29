@@ -70,7 +70,6 @@
             padding: 0 20px;
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -131,7 +130,6 @@
             width: 100%;
         }
 
-        /* Mobile Menu Toggle */
         .menu-toggle {
             display: none;
             background: none;
@@ -151,7 +149,6 @@
             transition: var(--transition);
         }
 
-        /* Mobile Navigation */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -212,7 +209,6 @@
             background-color: var(--secondary-color);
         }
 
-        /* Overlay */
         .overlay {
             position: fixed;
             top: 0;
@@ -231,16 +227,15 @@
             visibility: visible;
         }
 
-        /* Hero Section */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
             background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(46, 204, 113, 0.1) 100%);
             position: relative;
             overflow: hidden;
             padding-top: 80px;
+            padding-bottom: 2rem;
         }
 
         .hero-content {
@@ -251,9 +246,10 @@
             text-align: center;
             color: var(--text-color);
             z-index: 1;
-            max-width: 800px;
+            max-width: 100%;
             margin: 0 auto;
             padding: 0 20px;
+            width: 100%;
         }
 
         @media (min-width: 768px) {
@@ -262,21 +258,23 @@
                 justify-content: space-between;
                 align-items: center;
                 text-align: left;
+                max-width: 1200px;
             }
         }
 
         .hero-text {
             flex: 1;
+            min-width: 0;
         }
 
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
             margin-bottom: 1rem;
             animation: fadeInUp 1s ease;
         }
 
         .hero h2 {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 2rem);
             font-weight: 400;
             color: var(--text-light);
             margin-bottom: 20px;
@@ -284,20 +282,43 @@
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
             margin-bottom: 2rem;
             animation: fadeInUp 1s ease 0.2s both;
         }
 
+        .hero-image-container {
+            flex: 0 0 250px;
+            max-width: 250px;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .hero-image-container {
+                flex: 0 0 200px;
+                max-width: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-image-container {
+                flex: 0 0 150px;
+                max-width: 150px;
+            }
+        }
+
         .hero-image {
-            width: 250px;
-            height: 250px;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
             border-radius: 50%;
             object-fit: cover;
-            border: 0px solid var(--primary-color);
-            margin: 0 auto 2rem;
+            object-position: center top;
+            border: 5px solid var(--primary-color);
             box-shadow: var(--shadow);
             animation: fadeIn 1s ease 0.4s both;
+            display: block;
+            max-width: 100%;
         }
 
         .btn {
@@ -326,7 +347,6 @@
             color: white;
         }
 
-        /* About Section */
         .about {
             padding: 5rem 0;
             background: var(--card-bg);
@@ -388,7 +408,6 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* Skills Section */
         .skills {
             padding: 5rem 0;
         }
@@ -441,7 +460,6 @@
             padding-right: 5px;
         }
 
-        /* Services */
         .services {
             padding: 5rem 0;
             background: var(--card-bg);
@@ -495,7 +513,6 @@
             margin-bottom: 1rem;
         }
 
-        /* Portfolio */
         .portfolio {
             padding: 5rem 0;
         }
@@ -538,7 +555,6 @@
             opacity: 1;
         }
 
-        /* Qualifications */
         .qualifications {
             padding: 5rem 0;
             background: var(--card-bg);
@@ -564,7 +580,6 @@
             margin-bottom: 1rem;
         }
 
-        /* Testimonials */
         .testimonials {
             padding: 5rem 0;
         }
@@ -625,7 +640,6 @@
             opacity: 0.3;
         }
 
-        /* YouTube Section */
         .youtube {
             padding: 5rem 0;
             background: var(--card-bg);
@@ -654,30 +668,42 @@
         .video-thumbnail {
             width: 100%;
             height: 180px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .video-thumbnail img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .video-thumbnail:hover img {
+            transform: scale(1.1);
         }
 
         .play-icon {
             position: absolute;
-            background: rgba(0,0,0,0.7);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.8);
             width: 60px;
             height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .play-icon:hover {
+            background: var(--primary-color);
+            transform: translate(-50%, -50%) scale(1.1);
         }
 
         .video-info {
@@ -686,9 +712,10 @@
 
         .video-info h3 {
             margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            line-height: 1.4;
         }
 
-        /* Contact Section */
         .contact {
             padding: 5rem 0;
         }
@@ -788,7 +815,6 @@
             min-height: 150px;
         }
 
-        /* Footer */
         footer {
             background: var(--card-bg);
             padding: 2rem 0;
@@ -819,7 +845,6 @@
             font-size: 0.9rem;
         }
 
-        /* Chat Widget */
         .chat-widget {
             position: fixed;
             bottom: 20px;
@@ -934,7 +959,6 @@
             background: var(--secondary-color);
         }
 
-        /* Theme Controls */
         .theme-controls {
             position: fixed;
             top: 100px;
@@ -964,7 +988,6 @@
             transform: scale(1.1);
         }
 
-        /* Scroll Buttons */
         .scroll-buttons {
             position: fixed;
             right: 20px;
@@ -995,7 +1018,6 @@
             transform: scale(1.1);
         }
 
-        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -1016,17 +1038,6 @@
             }
         }
 
-        /* Responsive */
-        @media (max-width: 992px) {
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .about-image {
-                margin-top: 2rem;
-            }
-        }
-
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -1034,14 +1045,6 @@
             
             .menu-toggle {
                 display: block;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
             }
             
             .section-title {
@@ -1059,15 +1062,6 @@
         }
 
         @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero-image {
-                width: 150px;
-                height: 150px;
-            }
-            
             .testimonial-card {
                 min-width: 280px;
             }
@@ -1138,15 +1132,8 @@
                     <a href="#contact" class="btn btn-secondary">Contact Me</a>
                 </div>
             </div>
-            <div style="width: 100%; max-width: 300px; margin: 0 auto;">
-                <img src="hero.jpg" alt="Hailegebrale Kefle"
-                     style="width: 100%; height: auto; display: block;
-                            aspect-ratio: 1 / 1;
-                            border-radius: 50%;
-                            object-fit: cover;
-                            object-position: center top;
-                            border: 5px solid var(--primary-color);
-                            box-shadow: var(--shadow);" />
+            <div class="hero-image-container">
+                <img src="hero.jpg" alt="Hailegebrale Kefle" class="hero-image">
             </div>
         </div>
     </section>
@@ -1396,7 +1383,7 @@
             <h2 class="section-title">My YouTube Tutorials</h2>
             <div class="youtube-grid">
                 <div class="video-card">
-                    <div class="video-thumbnail">
+                    <div class="video-thumbnail" onclick="playVideo('J_rf5Q-yilY')">
                         <img src="https://i.ytimg.com/vi/J_rf5Q-yilY/maxresdefault.jpg" alt="Video Thumbnail">
                         <div class="play-icon">
                             <i class="fas fa-play"></i>
@@ -1407,7 +1394,7 @@
                     </div>
                 </div>
                 <div class="video-card">
-                    <div class="video-thumbnail">
+                    <div class="video-thumbnail" onclick="playVideo('f-Hr2lHTrYE')">
                         <img src="https://i.ytimg.com/vi/f-Hr2lHTrYE/maxresdefault.jpg" alt="Video Thumbnail">
                         <div class="play-icon">
                             <i class="fas fa-play"></i>
@@ -1418,7 +1405,7 @@
                     </div>
                 </div>
                 <div class="video-card">
-                    <div class="video-thumbnail">
+                    <div class="video-thumbnail" onclick="playVideo('W7hzDCkvPqE')">
                         <img src="https://i.ytimg.com/vi/W7hzDCkvPqE/maxresdefault.jpg" alt="Video Thumbnail">
                         <div class="play-icon">
                             <i class="fas fa-play"></i>
@@ -1429,7 +1416,7 @@
                     </div>
                 </div>
                 <div class="video-card">
-                    <div class="video-thumbnail">
+                    <div class="video-thumbnail" onclick="playVideo('2GwdFZHVWpg')">
                         <img src="https://i.ytimg.com/vi/2GwdFZHVWpg/maxresdefault.jpg" alt="Video Thumbnail">
                         <div class="play-icon">
                             <i class="fas fa-play"></i>
@@ -1580,7 +1567,6 @@
             mobileMenu.classList.toggle('active');
             overlay.classList.toggle('active');
             
-            // Change icon
             if (mobileMenu.classList.contains('active')) {
                 this.innerHTML = '<i class="fas fa-times"></i>';
             } else {
@@ -1594,7 +1580,6 @@
             mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
         });
         
-        // Close mobile menu when clicking on a link
         document.querySelectorAll('.mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
@@ -1618,7 +1603,6 @@
             }
         });
         
-        // Check for saved theme preference
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.body.dataset.theme = savedTheme;
         if (savedTheme === 'dark') {
@@ -1631,12 +1615,71 @@
             header.classList.toggle('shrink', window.scrollY > 60);
         });
         
-        // Telegram bot integration
-        const botToken = 'YOUR_BOT_TOKEN'; // Replace with your bot token
-        const chatId = 'YOUR_CHAT_ID'; // Replace with your Telegram chat ID
-        const telegramUsername = '@Hailek87'; // Your Telegram username
+        // YouTube Video Player Function
+        function playVideo(videoId) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.9);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            `;
+            
+            const iframe = document.createElement('iframe');
+            iframe.width = '100%';
+            iframe.height = '100%';
+            iframe.style.maxWidth = '800px';
+            iframe.style.maxHeight = '450px';
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            iframe.frameBorder = '0';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+            
+            modal.appendChild(iframe);
+            
+            const closeBtn = document.createElement('button');
+            closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+            closeBtn.style.cssText = `
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: var(--primary-color);
+                color: white;
+                border: none;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                font-size: 1.5rem;
+                cursor: pointer;
+                z-index: 10001;
+            `;
+            
+            modal.appendChild(closeBtn);
+            document.body.appendChild(modal);
+            
+            closeBtn.addEventListener('click', () => {
+                modal.remove();
+            });
+            
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
         
-        // Knowledge base for automatic responses
+        // Telegram bot integration
+        const botToken = 'YOUR_BOT_TOKEN';
+        const chatId = 'YOUR_CHAT_ID';
+        const telegramUsername = '@Hailek87';
+        
         const knowledgeBase = {
             greetings: ["hi", "hello", "hey", "greetings"],
             services: ["services", "what do you offer", "what can you do"],
@@ -1653,7 +1696,6 @@
             }
         };
 
-        // Function to analyze user message and provide response
         function analyzeMessage(message) {
             const lowerMsg = message.toLowerCase();
             
@@ -1675,7 +1717,6 @@
             return knowledgeBase.response.default;
         }
 
-        // Enhanced sendMessage function
         function sendMessage() {
             const input = document.getElementById('messageInput');
             const messages = document.getElementById('chatMessages');
@@ -1683,24 +1724,20 @@
             if (input.value.trim()) {
                 const userMessage = input.value;
                 
-                // Add user message to chat
                 messages.innerHTML += `
                     <div class="message message-user">
                         <strong>You:</strong> ${userMessage}
                     </div>
                 `;
                 
-                // Generate automatic response
                 const botResponse = analyzeMessage(userMessage);
                 
-                // Add initial bot response
                 messages.innerHTML += `
                     <div class="message message-bot">
                         <strong>Assistant:</strong> ${botResponse}
                     </div>
                 `;
                 
-                // Send to Telegram bot (only if not a common question)
                 if (botResponse === knowledgeBase.response.default) {
                     fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
                         method: 'POST',
@@ -1741,19 +1778,16 @@
             }
         }
 
-        // Theme toggle
         function toggleTheme(theme) {
             document.body.dataset.theme = theme;
             localStorage.setItem('theme', theme);
             
-            // Update active button
             document.querySelectorAll('.theme-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             event.currentTarget.classList.add('active');
         }
 
-        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1763,7 +1797,6 @@
             });
         });
 
-        // Scroll functions
         function scrollUp() {
             window.scrollBy({ top: -window.innerHeight, behavior: 'smooth' });
         }
@@ -1772,7 +1805,6 @@
             window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
         }
 
-        // Chat functionality
         function toggleChat() {
             const popup = document.getElementById('chatPopup');
             popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
@@ -1787,14 +1819,12 @@
             }
         }
 
-        // Form submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Thank you for your message! I will get back to you soon.');
             this.reset();
         });
 
-        // Animation on scroll
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
